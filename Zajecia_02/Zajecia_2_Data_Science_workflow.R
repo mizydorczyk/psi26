@@ -1,12 +1,12 @@
-# 1. Import danych
+# 1. Import danych ----
 kraje_1 = read.table("kraje_makro_1.csv", header=TRUE, sep=",", dec=".")
 kraje_2 = read.table("kraje_makro_2.csv", header=TRUE, sep=",", dec=".")
 
-# 2. Instalowanie pakietów
+# 2. Instalowanie pakietów ----
 # install.packages("readxl")
 library(readxl)
  
-# 3. Przygotowanie danych
+# 3. Przygotowanie danych ----
 head(kraje_1)	
 head(kraje_2)      
 
@@ -24,14 +24,14 @@ median(kraje_1$Przyrost_populacji)
 min(kraje_1$Przyrost_populacji)	
 max(kraje_1$Przyrost_populacji)	
   
-# 4. Porz¹dkowanie nazw kolumn
+# 4. Porz¹dkowanie nazw kolumn ----
 kraje_1$X = NULL
 kraje_2$X = NULL
 
 colnames(kraje_2) = c("Kod_kraju", "Nazwa", "Region", "Urbanizacja_proc.", "Internet_proc.")
 
 
-# 5. Porz¹dkowanie typów danych 
+# 5. Porz¹dkowanie typów danych ----
 is.numeric(kraje_2$Region)
 is.character(kraje_2$Region)
 
@@ -41,7 +41,7 @@ summary(kraje_2)
 levels(kraje_2$Region)
   
   
-# 6. Porz¹dkowanie braków danych 
+# 6. Porz¹dkowanie braków danych ----
 colSums(is.na(kraje_1))	
 colSums(is.na(kraje_2))	
 
@@ -60,7 +60,7 @@ kraje$Nazwa = NULL
 summary(kraje)
 str(kraje)
   
-# 7. Analiza danych 
+# 7. Analiza danych ----
 library(dplyr)
 
 kraje = kraje %>%
@@ -165,7 +165,7 @@ kraje %>%
   wynik[order(-wynik$sredni_internet), ]
 }
 
-# 8. Tworzenie wykresów
+# 8. Tworzenie wykresów ----
 # install.packages("ggplot2")
 library(ggplot2)
 
@@ -273,7 +273,7 @@ ggplot(kraje, aes(x = Region, y = Przyrost_populacji)) +
   theme(
     plot.title = element_text(face = "bold", size = 14))
 
-# 9. Eksport danych
+# 9. Eksport danych ----
 # install.packages("writexl")
 library(writexl)
 
